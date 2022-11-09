@@ -4,40 +4,13 @@ footer_columns:
       - title: About us
         url: /about/
         icon_image:
-      - title: Features
-        url: '#'
-        icon_image:
-      - title: News
-        url: '#'
-        icon_image:
-      - title: Careers
-        url: '#'
-        icon_image:
   - footer_column_title: Company
     items:
-      - title: Our team
-        url: /team/
-        icon_image:
-      - title: Partner with us
-        url: '#'
-        icon_image:
-      - title: FAQ
-        url: '#'
-        icon_image:
       - title: Blog
         url: /blog/
         icon_image:
   - footer_column_title: Support
     items:
-      - title: Account
-        url: '#'
-        icon_image:
-      - title: Support center
-        url: '#'
-        icon_image:
-      - title: Feedback
-        url: '#'
-        icon_image:
       - title: Contact us
         url: /contact/
         icon_image:
@@ -46,11 +19,12 @@ column_settings:
   columns_for_tablet: '2'
   columns_for_mobile: '2'
 footer_info:
-  footer_title:
+  footer_title: Hyvaros Technologies
   footer_logo_image: /assets/images/logo/dante-wht-image.svg
   footer_content_html: >-
-    Maecenas viverra malesuada erat sit ut commodo lacus amet, convallis.
-    Lobortis egestas parturient nunc
+    <p>Hyvaros is a strategic-led next-gen agency that's focused on helping your
+    brand thrive in the digital jungle. Our customers include; Individuals,
+    Startups, Businesses, Brands, Influencers and Crypto/NFT/Tech Companies.</p>
 social_media_information:
   copyright_social_icon: true
   youtube_url: '#'
