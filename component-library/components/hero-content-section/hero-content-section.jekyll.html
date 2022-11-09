@@ -1,0 +1,125 @@
+{% assign hero_layout = include.hero_layout | slugify %}
+{% if hero_layout == "image-right" %}
+{% assign hero_content_order = "order-lg-1" %}
+{% assign hero_image_order = "order-lg-2" %}
+{% endif %}
+
+{% if hero_layout == "image-left" %}
+{% assign hero_content_order = "order-lg-2" %}
+{% assign hero_image_order = "order-lg-1" %}
+{% endif %}
+
+{% assign mobile_image_order = include.mobile_image_order | slugify %}
+{% if mobile_image_order == "bottom" %}
+{% assign hero_mobile_content_order = "order-1" %}
+{% assign mobile_image_order = "order-2" %}
+{% endif %}
+
+{% if mobile_image_order == "top" %}
+{% assign hero_mobile_content_order = "order-2" %}
+{% assign mobile_image_order = "order-1" %}
+{% endif %}
+
+{% if mobile_image_order == null and hero_layout == "image-left" %}
+{% assign hero_content_order = "order-2" %}
+{% assign hero_image_order = "order-1" %}
+{% endif %}
+
+{% assign vertical_alignment = include.vertical_alignment | slugify %}
+{% if vertical_alignment == "top" %}
+{% assign vertical_alignment = "align-self-start" %}
+{% endif %}
+
+{% if vertical_alignment == "center" %}
+{% assign vertical_alignment = "align-self-center" %}
+{% endif %}
+
+{% if vertical_alignment == "bottom" %}
+{% assign vertical_alignment = "align-self-end" %}
+{% endif %}
+
+{% assign fit = include.image_type | slugify %}
+{% if fit == "contained" %}
+	{% assign object_fit = "contain" %}
+{% else %}
+	{% assign object_fit = "cover" %}
+{% endif %}
+
+{% assign c = "c-hero-content" %}
+
+<section class="{{c}} {{c}}-{{ forloop.index }}">
+
+	{% assign width = include.component_width | slugify %}
+	<div class="{% if width == "normal" %}
+					container
+				{% else %}
+					container-fluid
+				{% endif %}">
+		<div class="row">
+
+			<div class="col-lg-6 
+						col-md-12 
+						{{ hero_content_order }} 
+						{{ hero_mobile_content_order }} 
+						{{ vertical_alignment }} 
+						{{c}}__column 
+						{{c}}__content">
+				{% if include.caption_title and include.caption_title != "" %}
+					<div class="{{c}}__caption">
+						<h4>
+							<span class="pr-3">{{ include.caption_title }}</span>
+						</h4>
+					</div>
+				{% endif %}
+
+				{% if include.hero_title and include.hero_title != "" %}
+					<div class="{{c}}__title">
+						<h1>{{ include.hero_title }}</h1>
+					</div>
+				{% endif %}
+
+				{% if include.description_html and include.description_html != "" %}
+					<div class="{{c}}__description">
+						<p>{{ include.description_html }}</p>
+					</div>
+				{% endif %}
+
+				{% if include.cta_button_label or include.secondary_button_label %}
+					<div class="{{c}}__button-wrapper">
+						{% if include.cta_button_label and include.cta_button_label != "" %}
+						<div class="{{c}}__button">
+							<a class="btn" 
+							   href="{{ include.cta_button_url }}" 
+							   role="button">{{ include.cta_button_label }}</a>
+						</div>
+						{% endif %}
+
+						{% if include.secondary_button_label and include.secondary_button_label != "" %}
+							<div class="{{c}}__button-icon">
+								<a class="btn" 
+								   href="{{ include.secondary_button_url }}"
+								   role="button">{{ include.secondary_button_label }} <i class="fas fa-long-arrow-alt-right"></i>
+								</a>
+							</div>
+						{% endif %}
+					</div>
+				{% endif %}
+			</div>
+
+			<div class="col-lg-6 
+						col-md-12 
+						{{ hero_image_order }} 
+						{{ mobile_image_order }} 
+						{{ vertical_alignment }} 
+						{{c}}__image 
+						{{c}}__column">
+				{% if include.image != "" %}
+					<img class="img-fluid" 
+						 src="{{ include.image }}" 
+						 alt="{{ include.image_alt }}"
+						 style="object-fit: {{ object_fit }}" />
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>

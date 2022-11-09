@@ -1,0 +1,78 @@
+{% if include.columns_to_display == '2' %}
+	{% assign columns = 6 %}
+	{% assign columns = columns | prepend: "col-lg-" %}
+{% elsif include.columns_to_display == '3' %}
+	{% assign columns = 4 %}
+	{% assign columns = columns | prepend: "col-lg-" %}
+{% else %}
+	{% assign columns = 3 %}
+	{% assign columns = columns | prepend: "col-lg-" %}
+{% endif %}
+
+{% assign c = "c-info-section" %}
+<div class="container">
+	<div class="{{c}}">
+		{% if include.caption_title and include.caption_title != "" %}
+			<div class="{{c}}__caption-title">
+				<h4><span class="pr-3">{{ include.caption_title }}</span></h4>
+			</div>
+		{% endif %}
+
+		{% if include.main_title and include.main_title != "" %}
+			<div class="{{c}}__title"><h2>{{ include.main_title }}</h2></div>
+		{% endif %}
+
+		{% if include.description_html and include.description_html != ""  %}
+			<div class="row 
+						{{c}}__row">
+				<div class="col-md-6">
+					<p>{{ include.description_html }}</p>
+				</div>
+			</div>
+		{% endif %}
+
+		<div class="row 
+					{{c}}__row">
+			{% for item in include.items %}
+				{% assign content_alignment = include.content_alignment | slugify %}
+				{% if content_alignment == 'left' %}
+					{% assign info-text-alignment = 'text-left' %}
+				{% elsif content_alignment == 'right' %}
+					{% assign info-text-alignment = 'text-right' %}
+				{% else %}
+					{% assign info-text-alignment = 'text-center' %}
+				{% endif %}
+
+				<div class="{{ columns }} 
+							{{ info-text-alignment }}">
+					<div class="{{c}}__info-column">
+						{% if item.image and item.image != "" %}
+							<div class="{{c}}__analyze-column_column-image">
+								<img src="{{ item.image }}" class="img-fluid" width="87px" alt="{{ item.image_alt }}" />
+							</div>
+						{% endif %}
+
+						{% if item.title and item.title != "" %}
+							<div class="{{c}}__analyze-column_column-title">
+								<h3>{{ item.title }}</h3>
+							</div>
+						{% endif %}
+
+						{% if item.description_html and item.description_html != "" %}
+							<div class="{{c}}__analyze-column_column-content">
+								<p>{{ item.description_html }}</p>
+							</div>
+						{% endif %}
+
+						{% if item.button_label and item.button_label != "" %}
+							<a class="btn 
+									  outline-btn 
+									  {{c}}__column-button" 
+							   href="{{ item.button_url }}">{{ item.button_label }}</a>
+						{% endif %}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

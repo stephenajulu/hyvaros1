@@ -1,0 +1,86 @@
+{% if include.columns_to_display == '2' %}
+	{% assign columns = 6 %}
+	{% assign columns =  columns | prepend: "col-md-" %}
+{% elsif include.columns_to_display == '3' %}
+	{% assign columns = 4 %}
+	{% assign columns =  columns | prepend: "col-md-" %}
+{% else %}
+	{% assign columns = 3 %}
+	{% assign columns =  columns | prepend: "col-md-" %}
+{% endif %}
+
+{% assign caption_alignment = include.caption_alignment | slugify %}
+{% if caption_alignment == 'left' %}
+	{% assign number_counter_intro_alignment = 'text-left' %}
+{% elsif caption_alignment == 'center' %}
+	{% assign number_counter_intro_alignment = 'text-center' %}
+{% elsif caption_alignment == 'right' %}
+	{% assign number_counter_intro_alignment = 'text-right' %}
+{% else %}
+	{% assign number_counter_intro_alignment = 'text-left' %}
+{% endif %}
+
+{% assign c = "c-number-counter" %}
+
+<div class="{{c}}">
+	<div class="container">
+		{% if include.caption_title or include.main_title or include.description_html %}
+			<div class="{{ number_counter_intro_alignment }}">
+				{% if include.caption_title and include.caption_title != "" %}
+					<div class="{{c}}__caption-title">
+						<h4><span class="pr-3">{{ include.caption_title }}</span></h4>
+					</div>
+				{% endif %}
+
+				{% if include.main_title and include.main_title != "" %}
+					<div class="{{c}}__title">
+						<h2>{{ include.main_title }}</h2>
+					</div>
+				{% endif %}
+
+				{% if include.description_html and include.description_html != "" %}
+					<div class="row">
+						<div class="col-md-3"></div>
+						<div class="col-md-6">
+							<p>{{ include.description_html }}</p>
+						</div>
+						<div class="col-md-3"></div>
+					</div>
+				{% endif %}
+			</div>
+		{% endif %}
+
+
+
+		<div class="row 
+					{{c}}__grid-items">
+			{% for counter in include.items %}
+				{% assign counter_alignment = counter.alignment | slugify %}
+				{% if counter_alignment == 'left' %}
+					{% assign number_counter_section_alignment = 'text-left' %}
+				{% elsif counter_alignment == 'center' %}
+					{% assign number_counter_section_alignment = 'text-center' %}
+				{% elsif counter_alignment == 'right' %}
+					{% assign number_counter_section_alignment = 'text-right' %}
+				{% else %}
+					{% assign number_counter_section_alignment = 'text-left' %}
+				{% endif %}
+
+				<div class="{{ columns }} 
+							{{ number_counter_section_alignment }} 
+							{{c}}__counter-item">
+					<h1 class="{{c}}__item-count">
+						<span class="count">{{ counter.counter_number }}</span>
+						<span>{{ counter.counter_symbol }}</span>
+					</h1>
+					{% if counter.title and counter.title != "" %}
+						<h4 class="{{c}}__number-counter-column_title">{{ counter.title }}</h4>
+					{% endif %}
+					{% if counter.description_html and counter.description_html != "" %}
+						<p class="{{c}}__number-counter-column_description">{{ counter.description_html }}</p>
+					{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

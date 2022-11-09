@@ -1,0 +1,30 @@
+{
+  "name": "dante",
+  "private": true,
+  "description": "Dante template for bookshop and CloudCannon",
+  "scripts": {
+    "bookshop": "bookshop-browser",
+    "jekyll": "BUNDLE_GEMFILE=site/Gemfile bundle exec jekyll serve --port 6060 --trace --unpublished --source site",
+    "start": "run-p bookshop jekyll",
+    "postinstall": "mkdir -p site/node_modules/.bin/ && ln -sf ../../../node_modules/.bin/postcss site/node_modules/.bin/postcss"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CloudCannon/dante-jekyll-bookshop-template.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CloudCannon/dante-jekyll-bookshop-template/issues"
+  },
+  "homepage": "https://github.com/CloudCannon/dante-jekyll-bookshop-template#readme",
+  "devDependencies": {
+    "@bookshop/browser": "3.0.1",
+    "@bookshop/jekyll-engine": "3.0.1",
+    "@bookshop/generate": "3.0.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.3.5",
+    "postcss-cli": "^8.3.1",
+    "postcss-fluidvars": "^1.1.1"
+  }
+}
