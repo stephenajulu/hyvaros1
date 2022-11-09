@@ -20,7 +20,7 @@ column_settings:
   columns_for_mobile: '2'
 footer_info:
   footer_title: Hyvaros Technologies
-  footer_logo_image: /uploads/favicon-6.png
+  footer_logo_image:
   footer_content_html: >-
     <p>Hyvaros is a strategic-led agency focused on helping you thrive in this
     digital jungle. Reach out to us for a quote</p>
